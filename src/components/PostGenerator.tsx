@@ -146,10 +146,10 @@ export default function PostGenerator() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-indigo-500/30">
-      <div className="max-w-7xl mx-auto p-4 lg:p-8 grid lg:grid-cols-[380px_1fr] gap-8 h-[100dvh]">
+      <div className="max-w-7xl mx-auto p-4 lg:p-8 flex flex-col lg:grid lg:grid-cols-[380px_1fr] gap-8 min-h-[100dvh] lg:h-[100dvh]">
         
         {/* Sidebar Controls */}
-        <div className="flex flex-col gap-6 h-full overflow-y-auto pb-20 lg:pb-0 pr-2 custom-scrollbar">
+        <div className="flex flex-col gap-6 lg:h-full lg:overflow-y-auto pb-8 lg:pb-0 lg:pr-2 custom-scrollbar order-2 lg:order-1">
           <div className="space-y-2 shrink-0">
             <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
               InstaTech Daily
@@ -323,12 +323,14 @@ export default function PostGenerator() {
         </div>
 
         {/* Preview Area */}
-        <div className="flex items-center justify-center bg-neutral-900/50 rounded-3xl border border-white/5 p-8 overflow-hidden relative">
+        <div className="flex items-start lg:items-center justify-center bg-neutral-900/50 rounded-3xl border border-white/5 p-4 sm:p-8 overflow-hidden relative min-h-[480px] lg:min-h-0 order-1 lg:order-2 w-full">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.1),transparent_70%)]" />
             
-            {/* The Post Canvas */}
-            <div 
-              ref={postRef}
+            {/* Scaler Wrapper for Mobile */}
+            <div className="transform scale-[0.75] sm:scale-90 lg:scale-100 origin-top lg:origin-center transition-transform">
+              {/* The Post Canvas */}
+              <div 
+                ref={postRef}
               className="relative w-[432px] h-[540px] shadow-2xl overflow-hidden flex flex-col shrink-0"
               style={{
                 backgroundColor: (currentTheme.id === 'clean' || currentTheme.id === 'minimalist') ? '#ffffff' : '#000000',
@@ -615,6 +617,7 @@ export default function PostGenerator() {
                   </div>
                 )}
               </div>
+            </div>
             </div>
         </div>
       </div>
